@@ -1,5 +1,8 @@
 package kg.geektech.newsapp42.ui.home;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,11 +13,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 
@@ -58,7 +64,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                 Article article = (Article) result.getSerializable("article");
-                Log.e("Home", "result = " + article.getDate());
+                Log.e("Home", "result = " + article.getText());
                 adapter.addItem(article);
             }
         });
@@ -73,8 +79,23 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onItemLongClick(int position) {
+                MaterialAlertDialogBuilder alertDialog = new MaterialAlertDialogBuilder(requireContext());
+                alertDialog.setTitle("Удалить новость?");
+                alertDialog.setMessage("Вы точно хотите этого?");
+                alertDialog.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
+                    }
+                });
+                alertDialog.setPositiveButton("Да, удалить", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        adapter.deleteItem(position);
+                    }
+                }).show();
             }
+
         });
     }
 

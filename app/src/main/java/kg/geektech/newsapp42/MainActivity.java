@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        /*
+
         navController.navigate(R.id.boardFragment);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
@@ -52,19 +52,16 @@ public class MainActivity extends AppCompatActivity {
                 fragments.add(R.id.navigation_home);
                 fragments.add(R.id.navigation_dashboard);
                 fragments.add(R.id.navigation_notifications);
+                fragments.add(R.id.navigation_profile);
                 if (fragments.contains(destination.getId())) {
-                    binding.navView.setVisibility(View.GONE);
-                } else {
                     binding.navView.setVisibility(View.VISIBLE);
+                } else {
+                    binding.navView.setVisibility(View.GONE);
                 }
-
                 if (destination.getId() == R.id.boardFragment) getSupportActionBar().hide();
                 else getSupportActionBar().show();
             }
         });
-         */
-
-
     }
 
     @Override

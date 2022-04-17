@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android exes/NewsApp42/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.21" />
+        <entry key="..\:/Android exes/NewsApp42/app/src/main/res/drawable/ic_add.xml" value="0.21" />
         <entry key="..\:/Android exes/NewsApp42/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.21" />
         <entry key="..\:/Android exes/NewsApp42/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.21" />
+        <entry key="..\:/Android exes/NewsApp42/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.21" />
+        <entry key="..\:/Android exes/NewsApp42/app/src/main/res/drawable/ic_launcher_background.xml" value="0.21" />
+        <entry key="..\:/Android exes/NewsApp42/app/src/main/res/drawable/ic_profile_black_24dp.xml" value="0.21" />
         <entry key="..\:/Android exes/NewsApp42/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Android exes/NewsApp42/app/src/main/res/layout/fragment_board.xml" value="0.36666666666666664" />
         <entry key="..\:/Android exes/NewsApp42/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />

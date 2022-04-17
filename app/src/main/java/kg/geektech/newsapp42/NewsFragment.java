@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import kg.geektech.newsapp42.databinding.FragmentHomeBinding;
 import kg.geektech.newsapp42.databinding.FragmentNewsBinding;
+import kg.geektech.newsapp42.databinding.FragmentProfileBinding;
 import kg.geektech.newsapp42.models.Article;
 
 public class NewsFragment extends Fragment{
@@ -22,7 +23,10 @@ public class NewsFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_news, container, false);
+
+        binding = FragmentNewsBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+        return root;
     }
 
     @Override
@@ -40,12 +44,9 @@ public class NewsFragment extends Fragment{
         String text = binding.etText.getText().toString();
         Bundle bundle = new Bundle();
         Article article = new Article(text, System.currentTimeMillis());
-        bundle.putString("text", text);
+        bundle.putSerializable("article", article);
         getParentFragmentManager().setFragmentResult("rk_news", bundle);
-        close();
-    }
-
-    private void close() {
+        closeFragment();
     }
 
     private void closeFragment() {

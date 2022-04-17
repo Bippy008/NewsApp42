@@ -20,7 +20,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     private OnItemClickListener onItemClickListener;
 
     public NewsAdapter() {
-        this.list = list;
+        list = new ArrayList<>();
     }
 
     @NonNull
@@ -37,12 +37,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     public void addItem(Article article) {
         list.add(0, article);
         notifyItemInserted(0);
+    }
+
+    public void deleteItem(int position) {
+        list.remove(list.get(position));
+        notifyDataSetChanged();
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -64,8 +69,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
                 public void onClick(View view) {
                     onItemClickListener.onItemClick(getAdapterPosition());
                 }
-
-
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    onItemClickListener.onItemLongClick(getAdapterPosition());
+                    return true;
+                }
             });
         }
 
