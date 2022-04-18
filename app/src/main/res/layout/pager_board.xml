@@ -39,17 +39,4 @@
         android:layout_height="wrap_content"
         android:text="Start"/>
 
-    <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
-        android:layout_marginTop="16dp"
-    android:id="@+id/worm_dots_indicator"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:dotsColor="@color/purple_500"
-    app:dotsStrokeColor="@color/purple_200"
-    app:dotsCornerRadius="8dp"
-    app:dotsSize="16dp"
-    app:dotsSpacing="4dp"
-    app:dotsStrokeWidth="2dp"
-    />
-
 </LinearLayout>

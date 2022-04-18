@@ -23,8 +23,6 @@ import kg.geektech.newsapp42.databinding.FragmentBoardBinding;
 public class BoardFragment extends Fragment implements OnItemClickListener {
     private BoardAdapter adapter;
     private FragmentBoardBinding binding;
-    private WormDotsIndicator wormDotsIndicator;
-    private ViewPager2 viewPager2;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,10 +49,10 @@ public class BoardFragment extends Fragment implements OnItemClickListener {
         wormDotsIndicator.setViewPager2(viewPager2);
          */
 
-        wormDotsIndicator = (WormDotsIndicator) view.findViewById(R.id.worm_dots_indicator);
-        viewPager2 = (ViewPager2) view.findViewById(R.id.view_pager);
-        viewPager2.setAdapter(adapter);
-        wormDotsIndicator.setViewPager2(viewPager2);
+        //wormDotsIndicator = (WormDotsIndicator) view.findViewById(R.id.worm_dots_indicator);
+        //viewPager2 = (ViewPager2) view.findViewById(R.id.view_pager);
+        binding.viewPager.setAdapter(adapter);
+        binding.wormDotsIndicator.setViewPager2(binding.viewPager);
     }
 
     @Override
