@@ -15,12 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import kg.geektech.newsapp42.BuildConfig;
 import kg.geektech.newsapp42.OnItemClickListener;
 import kg.geektech.newsapp42.R;
+import kg.geektech.newsapp42.databinding.PagerBoardBinding;
 import kg.geektech.newsapp42.ui.home.NewsAdapter;
 
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> {
     private String[] titles = new String[] {"Привет", "Hello", "Салам"};
     private String[] descriptions = new String[] {"Вау алала", "блаблабла", "Салам алекум"};
     private int[] images = new int[] {R.drawable.burger_1, R.drawable.burger_2, R.drawable.burger_3};
+    private int[] lotties = new int[] {R.raw.news_animation, R.raw.news2_animation, R.raw.news3_animation};
     private OnItemClickListener onItemClickListener;
 
 
@@ -31,8 +33,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pager_board, parent, false);
-        return new ViewHolder(view);
+        return new BoardAdapter.ViewHolder(PagerBoardBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
@@ -46,32 +47,28 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView textTitle, description;
-        private Button btnStart;
-        private ImageView image;
+        private PagerBoardBinding binding;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            textTitle = itemView.findViewById(R.id.pager_title);
-            btnStart = itemView.findViewById(R.id.btn_start);
-            description = itemView.findViewById(R.id.pager_desk);
-            image = itemView.findViewById(R.id.pager_image);
+
+        public ViewHolder(PagerBoardBinding itemView) {
+            super(itemView.getRoot());
+            binding = itemView;
         }
 
 
         public void bind(int position) {
-            textTitle.setText(titles[position]);
-            description.setText(descriptions[position]);
-            image.setImageResource(images[position]);
+            binding.pagerTitle.setText(titles[position]);
+            binding.pagerDesk.setText(descriptions[position]);
+            binding.pagerImage.setAnimation(lotties[position]);
             if (position == titles.length-1) {
-                btnStart.setVisibility(View.VISIBLE);
-                btnStart.setOnClickListener(new View.OnClickListener() {
+                binding.btnStart.setVisibility(View.INVISIBLE);
+                binding.btnStart.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         onItemClickListener.onItemClick(getAdapterPosition());
                     }
                 });
-            } else btnStart.setVisibility(View.INVISIBLE);
+            } else binding.btnStart.setVisibility(View.INVISIBLE);
         }
     }
 }

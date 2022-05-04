@@ -37,5 +37,16 @@
         android:id="@+id/navigation_profile"
         android:name="kg.geektech.newsapp42.ui.profile.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_avatarFragment"
+            app:destination="@id/avatarFragment"
+            app:enterAnim="@anim/profile_zoom"
+            app:exitAnim="@anim/profile_zoom" />
+    </fragment>
+    <fragment
+        android:id="@+id/avatarFragment"
+        android:name="kg.geektech.newsapp42.ui.profile.AvatarFragment"
+        android:label="fragment_avatar"
+        tools:layout="@layout/fragment_avatar" />
 </navigation>

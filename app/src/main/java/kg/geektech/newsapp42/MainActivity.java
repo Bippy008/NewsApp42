@@ -3,6 +3,7 @@ package kg.geektech.newsapp42;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,6 +20,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import kg.geektech.newsapp42.databinding.ActivityMainBinding;
@@ -43,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        Prefs prefs = new Prefs(this);
+        if (!prefs.isBoardShown()) navController.navigate(R.id.boardFragment); //if (!prefs.isBoardShown())
 
-        navController.navigate(R.id.boardFragment);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -68,4 +71,20 @@ public class MainActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         return navController.navigateUp();
     }
+
+    /*
+    private void files() {
+        File dir = new File(getCacheDir(), "Media");
+        dir.mkdir();  /// создать директорию
+
+        File file = new File(getCacheDir(), "note.txt");
+        file.isFile(); //TRUE, если файл существует
+        file.length();  // размер файла в байтах
+        if (file.exists()) {
+            file.delete();
+        } else {
+            file.createNewFile();
+        }
+    }
+     */
 }

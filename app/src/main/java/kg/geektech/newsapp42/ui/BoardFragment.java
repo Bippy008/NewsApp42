@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 
 import kg.geektech.newsapp42.OnItemClickListener;
+import kg.geektech.newsapp42.Prefs;
 import kg.geektech.newsapp42.R;
 import kg.geektech.newsapp42.databinding.FragmentBoardBinding;
 
@@ -42,17 +43,21 @@ public class BoardFragment extends Fragment implements OnItemClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         adapter.setOnItemClickListener(this);
-        /*
-        viewPager2 = view.findViewById(R.id.view_pager);
-        viewPager2.setAdapter(adapter);
-        wormDotsIndicator = (WormDotsIndicator) view.findViewById(R.id.worm_dots_indicator);
-        wormDotsIndicator.setViewPager2(viewPager2);
-         */
-
-        //wormDotsIndicator = (WormDotsIndicator) view.findViewById(R.id.worm_dots_indicator);
-        //viewPager2 = (ViewPager2) view.findViewById(R.id.view_pager);
         binding.viewPager.setAdapter(adapter);
         binding.wormDotsIndicator.setViewPager2(binding.viewPager);
+        binding.txtSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                close();
+            }
+        });
+    }
+
+    private void close() {
+        Prefs prefs = new Prefs(requireContext());
+        prefs.saveState();
+        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+        navController.navigateUp();
     }
 
     @Override
